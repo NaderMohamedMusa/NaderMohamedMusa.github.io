@@ -7,6 +7,8 @@ import 'sections/home_section.dart'; // We will create this next
 // import 'sections/portfolio_section.dart';
 // import 'sections/contact_section.dart';
 import 'home_screen.dart';
+import 'intro_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Portfolio',
+      title: 'Nader Musa',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
@@ -31,8 +33,9 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: const IntroScreen(),
     );
+
   }
 }
 

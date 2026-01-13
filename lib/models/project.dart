@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Project {
   final String title;
   final String description;
@@ -9,6 +11,7 @@ class Project {
   final String? webUrl;
   final String? videoUrl;
   final List<String> technologies;
+  final BoxFit? fit;
 
   Project({
     required this.title,
@@ -21,5 +24,6 @@ class Project {
     this.webUrl,
     this.videoUrl,
     required this.technologies,
+    this.fit,
   });
 }
