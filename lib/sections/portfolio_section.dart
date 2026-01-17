@@ -42,7 +42,8 @@ class PortfolioSection extends StatelessWidget {
     ),
     Project(
       title: "وأتموا",
-      description: "Enables users to authorize qualified proxies to perform Hajj and Umrah on behalf of the elderly, sick, or deceased, aligned with Saudi Vision 2030 to facilitate religious duties using modern technology.",
+      description: "Enables users to authorize qualified proxies to perform Hajj and Umrah on behalf of the elderly, "
+          "sick, or deceased, aligned with Saudi Vision 2030 to facilitate religious duties using modern technology.",
       technologies: ["Video & Record Audio Player", "Cubit", "MVVM", "Firebase", "Social Auth", "Payment Gateway", "FCM"],
       imageUrl: "assets/images/watemo.png",
       fit: BoxFit.none,
@@ -76,7 +77,7 @@ class PortfolioSection extends StatelessWidget {
     Project(
       title: "Skylayers POS",
       description: "Paid POS app for managing sales, inventory, and invoices. Requires activation via Skylayers POS.",
-      technologies: ["Provider", "MVVM", "MySQL Local DB", "Printing (Bluetooth/USB/WiFi)", "Notification"],
+      technologies: ["Provider", "MVVM", "MySQL Local DB", "Printing (Bluetooth/USB/WiFi)", "FCM"],
       imageUrl: "assets/images/skylayers_pos.png",
       fit: BoxFit.none,
       liveUrl: "https://drive.google.com/drive/folders/1sYRaHu0cSvAtHgYWmAY5MDfhy0yVSRoK",
