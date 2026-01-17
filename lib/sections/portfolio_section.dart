@@ -14,9 +14,9 @@ class PortfolioSection extends StatelessWidget {
     Project(
       title: "Onyx ix ERP",
       description: "Migrate Onyx IX ERP from Oracle Forms to Flutter for web, mobile, and desktop with a modern UI, APIs, and better performance. Modules include Stock, Sales, Purchasing, Finance, HR, POS, and more.",
-      technologies: ["Clean Arch", "Bloc/Cubit", "MVVM", "Clean Code", "Firebase", "Mason"],
+      technologies: ["Clean Arch + MVVM", "Bloc/Cubit", "Clean Code", "Firebase", "Mason", "Monorepo (Melos)", "Dio", "Syncfusion", "Pluto Grid"],
       imageUrl: "assets/images/onyx_erp.png",
-      fit: BoxFit.fill,
+      fit: BoxFit.none,
       webUrl: "https://blueultimate.learnonyx.com:8022/onyx-ix.dv",
       videoUrl: "https://drive.google.com/file/d/1LwTe5cdYSiLswZWtC7hX1UoYqsKM4y2q/view?usp=sharing",
     ),
@@ -77,7 +77,7 @@ class PortfolioSection extends StatelessWidget {
       title: "Skylayers POS",
       description: "Paid POS app for managing sales, inventory, and invoices. Requires activation via Skylayers POS.",
       technologies: ["Provider", "MVVM", "MySQL Local DB", "Printing (Bluetooth/USB/WiFi)", "Notification"],
-      imageUrl: "assets/images/project1.png",
+      imageUrl: "assets/images/skylayers_pos.png",
       fit: BoxFit.none,
       liveUrl: "https://drive.google.com/drive/folders/1sYRaHu0cSvAtHgYWmAY5MDfhy0yVSRoK",
     ),
@@ -204,7 +204,7 @@ class PortfolioSection extends StatelessWidget {
       title: "Dr Math",
       description: "Educational app that includes competitions and enhances children's mental arithmetic skills through quick exercises.",
       technologies: ["Clean Arch", "Bloc/Cubit", "MVVM", "Firebase", "Pusher", "Payment Gateway"],
-      imageUrl: "assets/images/project1.png",
+      imageUrl: "",
       androidUrl: "https://play.google.com/store/apps/details?id=com.drmath.app",
     ),
   ];
@@ -260,9 +260,10 @@ class _ProjectCard extends StatelessWidget {
             height: 200,
             width: double.infinity,
             color: Colors.white,
+            padding: EdgeInsets.symmetric(horizontal: 8,vertical: 8),
             child: Image.asset(
               project.imageUrl, 
-              fit: project.fit ?? BoxFit.none,
+              fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) {
                 return Center(child: Icon(Icons.image_not_supported, size: 50, color: Colors.grey.withOpacity(0.5)));
               },

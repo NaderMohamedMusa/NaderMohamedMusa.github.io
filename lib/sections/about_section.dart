@@ -50,7 +50,7 @@ class AboutSection extends StatelessWidget {
                    ),
                    const SizedBox(height: 20),
                    Text(
-                     "A Flutter Mobile Developer with over 4 years of experience in designing and developing systems for Android, iOS, and iPad, in addition to working on web and desktop applications. I have extensive expertise in building and optimizing integrated systems, from creating interactive user interfaces to enhancing performance and ensuring high-quality applications across different platforms and devices.",
+                     "A Flutter Mobile Developer with over 5 years of experience in designing and developing systems for Android, iOS, and iPad, in addition to working on web and desktop applications. I have extensive expertise in building and optimizing integrated systems, from creating interactive user interfaces to enhancing performance and ensuring high-quality applications across different platforms and devices.",
                      style: AppStyles.bodyText.copyWith(fontSize: 16, height: 1.6, color: Colors.grey[300]),
                      textAlign: TextAlign.justify,
                    ),
@@ -115,7 +115,7 @@ class AboutSection extends StatelessWidget {
             runSpacing: 30,
             alignment: WrapAlignment.center,
             children: [
-              _StatCircle(count: "04+", label: "Years\nExperience"),
+              _StatCircle(count: "05+", label: "Years\nExperience"),
               _StatCircle(count: "20+", label: "Projects\nCompleted"),
               _StatCircle(count: "10+", label: "Happy\nClients"),
             ],
