@@ -7,12 +7,16 @@ class SectionShell extends StatelessWidget {
   final Widget child;
   final Color? color;
   final EdgeInsets? padding;
+  final double? topPadding;
+  final double? bottomPadding;
 
   const SectionShell({
     super.key,
     required this.child,
     this.color,
     this.padding,
+    this.topPadding,
+    this.bottomPadding,
   });
 
   @override
@@ -26,9 +30,11 @@ class SectionShell extends StatelessWidget {
       width: double.infinity,
       color: color ?? AppColors.background,
       padding: padding ??
-          EdgeInsets.symmetric(
-            vertical: Responsive.isMobile(context) ? 64 : 88,
-            horizontal: horizontal,
+          EdgeInsets.fromLTRB(
+            horizontal,
+            topPadding ?? (Responsive.isMobile(context) ? 8 : 12),
+            horizontal,
+            bottomPadding ?? (Responsive.isMobile(context) ? 8 : 12),
           ),
       child: Center(
         child: ConstrainedBox(

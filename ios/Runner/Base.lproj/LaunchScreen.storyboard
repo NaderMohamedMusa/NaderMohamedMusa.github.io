@@ -1,34 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" launchScreen="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ydg-fD-yQy"/>
-                        <viewControllerLayoutGuide type="bottom" id="xbc-2k-c8Z"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="LaunchBackground" translatesAutoresizingMaskIntoConstraints="NO" id="tWc-Dq-wcI"/>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4"></imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mark-container">
+                                <rect key="frame" x="148" y="306" width="96" height="96"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;/&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignCenters" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mark-text">
+                                        <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="28"/>
+                                        <color key="textColor" red="0.329" green="0.769" blue="0.973" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.067" green="0.094" blue="0.153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="mark-text" firstAttribute="centerX" secondItem="mark-container" secondAttribute="centerX" id="mark-center-x"/>
+                                    <constraint firstItem="mark-text" firstAttribute="centerY" secondItem="mark-container" secondAttribute="centerY" id="mark-center-y"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="28"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds">
+                                        <true/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NADER MUSA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignCenters" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" translatesAutoresizingMaskIntoConstraints="NO" id="name-label">
+                                <fontDescription key="fontDescription" type="system" weight="bold" pointSize="23"/>
+                                <color key="textColor" red="0.973" green="0.980" blue="0.988" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SENIOR FLUTTER DEVELOPER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignCenters" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" translatesAutoresizingMaskIntoConstraints="NO" id="role-label">
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
+                                <color key="textColor" red="0.608" green="0.510" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Building for every platform" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignCenters" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" translatesAutoresizingMaskIntoConstraints="NO" id="tagline-label">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.580" green="0.639" blue="0.722" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="accent-line">
+                                <rect key="frame" x="164" y="542" width="64" height="3"/>
+                                <color key="backgroundColor" red="0.329" green="0.769" blue="0.973" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="line-height"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.027" green="0.043" blue="0.086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="3T2-ad-Qdv"/>
-                            <constraint firstItem="tWc-Dq-wcI" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="RPx-PI-7Xg"/>
-                            <constraint firstItem="tWc-Dq-wcI" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="SdS-ul-q2q"/>
-                            <constraint firstAttribute="trailing" secondItem="tWc-Dq-wcI" secondAttribute="trailing" id="Swv-Gf-Rwn"/>
-                            <constraint firstAttribute="trailing" secondItem="YRO-k0-Ey4" secondAttribute="trailing" id="TQA-XW-tRk"/>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="duK-uY-Gun"/>
-                            <constraint firstItem="tWc-Dq-wcI" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="kV7-tw-vXt"/>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="xPn-NY-SIU"/>
+                            <constraint firstItem="mark-container" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="mark-x"/>
+                            <constraint firstItem="mark-container" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-96" id="mark-y"/>
+                            <constraint firstItem="mark-container" firstAttribute="width" constant="96" id="mark-width"/>
+                            <constraint firstItem="mark-container" firstAttribute="height" constant="96" id="mark-height"/>
+                            <constraint firstItem="name-label" firstAttribute="top" secondItem="mark-container" secondAttribute="bottom" constant="30" id="name-top"/>
+                            <constraint firstItem="name-label" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="name-x"/>
+                            <constraint firstItem="name-label" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="24" id="name-leading"/>
+                            <constraint firstAttribute="trailing" secondItem="name-label" secondAttribute="trailing" constant="24" id="name-trailing"/>
+                            <constraint firstItem="role-label" firstAttribute="top" secondItem="name-label" secondAttribute="bottom" constant="11" id="role-top"/>
+                            <constraint firstItem="role-label" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="role-x"/>
+                            <constraint firstItem="role-label" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="24" id="role-leading"/>
+                            <constraint firstAttribute="trailing" secondItem="role-label" secondAttribute="trailing" constant="24" id="role-trailing"/>
+                            <constraint firstItem="tagline-label" firstAttribute="top" secondItem="role-label" secondAttribute="bottom" constant="16" id="tagline-top"/>
+                            <constraint firstItem="tagline-label" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="tagline-x"/>
+                            <constraint firstItem="accent-line" firstAttribute="top" secondItem="tagline-label" secondAttribute="bottom" constant="38" id="line-top"/>
+                            <constraint firstItem="accent-line" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="line-x"/>
+                            <constraint firstItem="accent-line" firstAttribute="width" constant="64" id="line-width"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,8 +86,4 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="LaunchImage" width="168" height="185"/>
-        <image name="LaunchBackground" width="1" height="1"/>
-    </resources>
 </document>

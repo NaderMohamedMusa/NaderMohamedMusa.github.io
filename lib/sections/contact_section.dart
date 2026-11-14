@@ -17,7 +17,7 @@ class ContactSection extends StatelessWidget {
       color: AppColors.background,
       padding: EdgeInsets.fromLTRB(
         Responsive.isMobile(context) ? 20 : 72,
-        64,
+        Responsive.isMobile(context) ? 8 : 12,
         Responsive.isMobile(context) ? 20 : 72,
         28,
       ),
@@ -113,7 +113,7 @@ class _QuoteCard extends StatelessWidget {
           const Icon(Icons.format_quote, color: AppColors.primary, size: 28),
           const SizedBox(height: 10),
           Text(
-            'A Flutter developer with 5+ years of experience shipping production apps for Android, iOS, web, and desktop — from ERP platforms to real-time delivery systems.',
+            'A Senior Flutter Developer with 5 years of experience building production apps for mobile, web, and desktop, including enterprise ERP platforms and real-time delivery systems.',
             style: AppStyles.bodyText.copyWith(fontSize: 14, color: AppColors.textPrimary),
           ),
           const SizedBox(height: 16),
@@ -182,6 +182,7 @@ class _Social extends StatelessWidget {
         child: Container(
           width: 36,
           height: 36,
+          alignment: Alignment.center,
           decoration: BoxDecoration(
             color: AppColors.surfaceAlt,
             shape: BoxShape.circle,

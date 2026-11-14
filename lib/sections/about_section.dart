@@ -12,7 +12,7 @@ class AboutSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final stats = [
-      _StatData(Icons.calendar_month_outlined, '5+', 'Years Experience'),
+      _StatData(Icons.calendar_month_outlined, '5', 'Years Experience'),
       _StatData(Icons.code, '20+', 'Projects Completed'),
       _StatData(Icons.sentiment_satisfied_alt_outlined, '10+', 'Happy Clients'),
       _StatData(Icons.emoji_events_outlined, '100%', 'Client Satisfaction'),
@@ -67,7 +67,7 @@ class _AboutCopy extends StatelessWidget {
                 backgroundColor: AppColors.surface,
                 title: Text('About Nader', style: AppStyles.headline2),
                 content: Text(
-                  'A Flutter Mobile Developer with over 5 years of experience designing and developing systems for Android, iOS, and iPad, plus web and desktop. Expertise spans interactive UIs, performance, APIs, Firebase, and store deployment.\n\nEducation: Bachelor’s Degree in CS, Fayoum University (2017–2021).\nLanguages: Arabic (native), English (very good).',
+                  'A Senior Flutter Developer with 5 years of experience building scalable applications for mobile, web, and desktop. Focus areas include enterprise ERP modernization, application architecture, performance, and business solutions for e-commerce, POS, logistics, and education.\n\nEducation: Bachelor’s Degree in Computer Science, Fayoum University (2017–2021).\nLanguages: Arabic (native), English (very good).',
                   style: AppStyles.bodyText,
                 ),
                 actions: [

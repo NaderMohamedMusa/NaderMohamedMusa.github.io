@@ -13,17 +13,17 @@ class ExperienceSection extends StatelessWidget {
   final List<Experience> experiences = const [
     Experience(
       company: 'Ultimate Solutions',
-      role: 'Flutter Developer',
+      role: 'Senior Flutter Developer',
       duration: 'June 2024 – Present',
       type: 'Full-time | On Site',
       description:
-          'Transforming Onyx ERP into a modern platform running on web, desktop, and mobile using Flutter, with direct integration with the Oracle database via API, support for Firebase Hosting, local data management, integration with Mason and CI/CD, and payment gateways.',
+          'Modernizing Onyx ERP from a legacy enterprise system into a scalable solution for web, desktop, and mobile. Leading and coordinating a 15+ member development team, shaping reusable architecture across Sales, Inventory, Finance, HR, and POS, and improving performance and maintainability through modular development and code optimization.',
       websiteUrl: 'https://ultimatesolutionsportal.com/?lang=ar',
-      technologies: ['Flutter', 'Dart', 'Clean Arch', 'Bloc', 'Oracle API', 'Firebase'],
+      technologies: ['Flutter', 'Dart', 'Clean Architecture', 'Bloc/Cubit', 'MVVM', 'CI/CD'],
     ),
     Experience(
       company: 'T Square',
-      role: 'Flutter Developer',
+      role: 'Mid Flutter Developer',
       duration: 'Feb 2024 – June 2024',
       type: 'Full-time | Remotely',
       description:
@@ -32,31 +32,31 @@ class ExperienceSection extends StatelessWidget {
     ),
     Experience(
       company: 'Fekrait',
-      role: 'Flutter Developer',
+      role: 'Junior Flutter Developer',
       duration: 'June 2021 – Nov 2022',
       type: 'Full-time | Remotely',
       description:
-          'Developing the POS system for the ERP sales module, supporting printing via Sunmi, Ethernet, and Bluetooth, plus restaurant, e-invoice, and driver tracking apps.',
+          'Built POS and sales management applications integrated with ERP systems, including online and offline transactions, inventory and invoicing workflows, and Sunmi, Bluetooth, and Ethernet printing. Also developed restaurant operations, e-invoice verification, and driver tracking features.',
       websiteUrl: 'https://fekrait.com',
-      technologies: ['Flutter', 'Provider', 'Sunmi SDK', 'Google Maps'],
+      technologies: ['Flutter', 'Provider', 'MVC', 'REST APIs', 'Dio', 'Sunmi Printing'],
     ),
     Experience(
       company: 'Atlantis',
-      role: 'Flutter Instructor',
+      role: 'Instructor',
       duration: 'June 2021 – Nov 2022',
       type: 'Part-time | On Site',
       description:
-          'Working as a Flutter instructor, focusing on hands-on training and helping trainees build professional projects.',
+          'Delivered hands-on Flutter training and mentored students in application architecture, debugging, problem-solving, and development best practices through practical projects.',
       websiteUrl: 'https://www.facebook.com/atlantis.company.eg',
       technologies: ['Flutter', 'Dart', 'Teaching'],
     ),
     Experience(
       company: 'Pixel',
-      role: 'Freelance Flutter Developer',
+      role: 'Junior Flutter Developer',
       duration: 'June 2020 – Jan 2024',
-      type: 'Freelance',
+      type: 'Full-time | Remotely',
       description:
-          'Attendance systems, tourist booking, and multi-vendor e-commerce platforms for clients across Egypt.',
+          'Developed mobile applications for e-commerce, HR management, tourism, booking, and service businesses. Built employee management workflows, customer and vendor shopping experiences, digital payments, and reservation features from requirements through deployment and maintenance.',
       websiteUrl: 'http://www.pixel-eg.com',
       technologies: ['Flutter', 'Provider', 'Firebase'],
     ),
@@ -66,6 +66,7 @@ class ExperienceSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SectionShell(
       color: AppColors.background,
+      bottomPadding: Responsive.isMobile(context) ? 8 : 12,
       child: Column(
         children: [
           const SectionEyebrow('Experience'),

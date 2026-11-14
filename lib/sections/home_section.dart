@@ -20,7 +20,7 @@ class HomeSection extends StatelessWidget {
         Responsive.isMobile(context) ? 20 : 72,
         Responsive.isMobile(context) ? 36 : 56,
         Responsive.isMobile(context) ? 20 : 72,
-        Responsive.isMobile(context) ? 48 : 72,
+        Responsive.isMobile(context) ? 8 : 12,
       ),
       child: Responsive(
         mobile: Column(

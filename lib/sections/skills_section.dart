@@ -10,19 +10,20 @@ class SkillsSection extends StatelessWidget {
   final List<SkillItem> featured = const [
     SkillItem('Flutter', 0.95, Color(0xFF54C5F8)),
     SkillItem('Dart', 0.95, Color(0xFF0175C2)),
-    SkillItem('Bloc / Cubit', 0.95, Color(0xFF7C5CFF)),
-    SkillItem('Riverpod', 0.90, Color(0xFF14B8A6)),
+    SkillItem('BLoC / Cubit', 0.95, Color(0xFF7C5CFF)),
+    SkillItem('GetX / Provider', 0.90, Color(0xFF14B8A6)),
     SkillItem('Firebase', 0.90, Color(0xFFFFCA28)),
     SkillItem('REST APIs', 0.95, Color(0xFF22C55E)),
     SkillItem('Clean Architecture', 0.95, Color(0xFF6366F1)),
-    SkillItem('Git & GitHub', 0.95, Color(0xFFF05032)),
+    SkillItem('Flutter Web', 0.90, Color(0xFF54C5F8)),
     SkillItem('CI/CD', 0.85, Color(0xFFA855F7)),
   ];
 
   final List<SkillCategory> extra = [
-    SkillCategory('Architecture', ['MVVM', 'SOLID', 'Design Patterns', 'GetIt']),
-    SkillCategory('Backend', ['Supabase', 'Pusher', 'Hive/SQLite', 'Payments']),
-    SkillCategory('AI Tools', ['Cursor', 'Copilot', 'ChatGPT', 'Claude']),
+    SkillCategory('Architecture', ['MVVM', 'MVC', 'SOLID', 'Design Patterns']),
+    SkillCategory('Tools & Services', ['Supabase', 'Firebase', 'Pusher', 'Sentry', 'Hive', 'SQLite']),
+    SkillCategory('Delivery', ['CI/CD', 'Flutter Flavors', 'Shorebird', 'Melos', 'Testing']),
+    SkillCategory('App Features', ['Maps & Live Tracking', 'Background Services', 'Payments', 'Store Deployment']),
   ];
 
   @override
@@ -32,6 +33,7 @@ class SkillsSection extends StatelessWidget {
         : (Responsive.isTablet(context) ? 2 : 3);
 
     return SectionShell(
+      topPadding: Responsive.isMobile(context) ? 8 : 12,
       child: Column(
         children: [
           const SectionEyebrow('My Skills'),
