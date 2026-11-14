@@ -1,221 +1,218 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../constants/colors.dart';
+import '../constants/profile.dart';
 import '../constants/styles.dart';
 import '../utils/responsive.dart';
+import '../widgets/app_buttons.dart';
+import '../widgets/section_shell.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    return Container(
-      width: double.infinity,
-      color: Colors.transparent,
-      padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 20),
+    return SectionShell(
+      color: AppColors.background,
+      padding: EdgeInsets.fromLTRB(
+        Responsive.isMobile(context) ? 20 : 72,
+        64,
+        Responsive.isMobile(context) ? 20 : 72,
+        28,
+      ),
       child: Column(
         children: [
-          FadeInDown(child: Text("Contact Me", style: AppStyles.headline1.copyWith(color: AppColors.linkColor))),
-          const SizedBox(height: 10),
-          FadeInDown(delay: const Duration(milliseconds: 200), child: Text("Let's work together", style: AppStyles.bodyText.copyWith(color: Colors.grey))),
-          const SizedBox(height: 60),
-
-          FadeInUp(
-            duration: const Duration(milliseconds: 1000),
-            child: Container(
-              width: Responsive.isMobile(context) ? double.infinity : 700,
-              padding: const EdgeInsets.all(40),
-              decoration: BoxDecoration(
-                color: const Color(0xFF1E2029),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppColors.secondary.withOpacity(0.1)),
-                boxShadow: [
-                  BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 20, offset: const Offset(0, 10)),
-                  BoxShadow(color: AppColors.linkColor.withOpacity(0.05), blurRadius: 20, spreadRadius: 0),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Text("Get in Touch", style: AppStyles.headline2.copyWith(color: Colors.white, fontSize: 30)),
-                  const SizedBox(height: 20),
-                  Text(
-                    "I'm currently looking for new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!",
-                    style: AppStyles.bodyText.copyWith(color: Colors.grey[300], fontSize: 16, height: 1.6),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 40),
-                  Wrap(
-                    spacing: 20,
-                    runSpacing: 20,
-                    alignment: WrapAlignment.center,
-                    children: [
-                      _ContactButton(
-                        text: "Say Hello",
-                        icon: Icons.email_outlined,
-                        onTap: () async {
-                           final Uri emailLaunchUri = Uri(
-                             scheme: 'mailto',
-                             path: 'Mo.nader298@gmail.com',
-                             query: 'subject=Hello&body=Hi Nader,',
-                           );
-                           if (!await launchUrl(emailLaunchUri)) {}
-                        },
-                      ),
-                      _ContactButton(
-                        text: "WhatsApp",
-                        icon: FontAwesomeIcons.whatsapp,
-                        color: const Color(0xFF25D366),
-                        onTap: () async {
-                           final Uri whatsappUri = Uri.parse("https://wa.me/201026133553");
-                           if (!await launchUrl(whatsappUri)) {}
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+          Responsive(
+            mobile: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                _CtaBlock(),
+                SizedBox(height: 24),
+                _QuoteCard(),
+                SizedBox(height: 24),
+                _FollowBlock(),
+              ],
             ),
-          ),
-          
-          const SizedBox(height: 60),
-          FadeInUp(
-            delay: const Duration(milliseconds: 500),
-            child: Column(
+            desktop: const Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _ContactInfoRow(icon: Icons.location_on, text: "6 October, Giza, Egypt"),
-                const SizedBox(height: 10),
-                _ContactInfoRow(icon: Icons.phone, text: "+20 102 613 3553"),
-                const SizedBox(height: 10),
-                _ContactInfoRow(
-                  icon: Icons.email, 
-                  text: "Mo.nader298@gmail.com", 
-                  color: AppColors.linkColor,
-                  onTap: () async {
-                     final Uri emailLaunchUri = Uri(
-                       scheme: 'mailto',
-                       path: 'Mo.nader298@gmail.com',
-                     );
-                     if (!await launchUrl(emailLaunchUri)) {}
-                  }
-                ),
-                const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                     _FooterIcon(icon: FontAwesomeIcons.github, url: "https://github.com/NaderMohamedMusa"),
-                     const SizedBox(width: 20),
-                     _FooterIcon(icon: FontAwesomeIcons.linkedin, url: "https://www.linkedin.com/in/nader-mohamed-musa-560133186/"),
-                     const SizedBox(width: 20),
-                     _FooterIcon(icon: Icons.email, url: "mailto:Mo.nader298@gmail.com"),
-                  ],
-                ),
-                const SizedBox(height: 30),
-                Text("© 2025 Nader Mohamed. All Right Reserved", style: AppStyles.bodyText.copyWith(fontSize: 14, color: Colors.grey[600])),
+                Expanded(flex: 4, child: _CtaBlock()),
+                SizedBox(width: 28),
+                Expanded(flex: 5, child: _QuoteCard()),
+                SizedBox(width: 28),
+                Expanded(flex: 3, child: _FollowBlock()),
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class _ContactInfoRow extends StatelessWidget {
-  final IconData icon;
-  final String text;
-  final Color? color;
-  final VoidCallback? onTap;
-
-  const _ContactInfoRow({required this.icon, required this.text, this.color, this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, color: color ?? Colors.grey, size: 18),
-          const SizedBox(width: 10),
-          Text(text, style: AppStyles.bodyText.copyWith(color: color ?? Colors.grey, fontWeight: onTap != null ? FontWeight.bold : FontWeight.normal)),
-        ],
-      ),
-    );
-  }
-}
-
-class _ContactButton extends StatefulWidget {
-  final String text;
-  final IconData icon;
-  final VoidCallback onTap;
-  final Color? color;
-
-  const _ContactButton({required this.text, required this.icon, required this.onTap, this.color});
-
-  @override
-  State<_ContactButton> createState() => _ContactButtonState();
-}
-
-class _ContactButtonState extends State<_ContactButton> {
-  bool _isHovered = false;
-
-  @override
-  Widget build(BuildContext context) {
-    final color = widget.color ?? AppColors.linkColor;
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: widget.onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-          decoration: BoxDecoration(
-            color: _isHovered ? color : Colors.transparent,
-            borderRadius: BorderRadius.circular(30),
-            border: Border.all(color: color, width: 2),
-            boxShadow: [
-              if (_isHovered) BoxShadow(color: color.withOpacity(0.4), blurRadius: 15, spreadRadius: 2)
-            ],
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
+          const SizedBox(height: 36),
+          const Divider(color: AppColors.border),
+          const SizedBox(height: 16),
+          Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            runSpacing: 8,
             children: [
-              Icon(widget.icon, color: _isHovered ? Colors.white : color, size: 20),
-              const SizedBox(width: 10),
               Text(
-                widget.text,
-                style: AppStyles.buttonText.copyWith(
-                  color: _isHovered ? Colors.white : color,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16
-                ),
+                '© ${DateTime.now().year} ${Profile.name}. All rights reserved.',
+                style: AppStyles.bodyText.copyWith(fontSize: 12, color: AppColors.muted),
+              ),
+              Text(
+                'Made with ❤️ by ${Profile.firstName}',
+                style: AppStyles.bodyText.copyWith(fontSize: 12, color: AppColors.muted),
               ),
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CtaBlock extends StatelessWidget {
+  const _CtaBlock();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SectionEyebrow("Let's work together"),
+        const SizedBox(height: 12),
+        Text('Have a project in mind?', style: AppStyles.headline1.copyWith(fontSize: 30)),
+        const SizedBox(height: 10),
+        Text(
+          "I'm always open to discussing new projects and opportunities. Let's create something amazing together!",
+          style: AppStyles.bodyText.copyWith(fontSize: 14),
+        ),
+        const SizedBox(height: 20),
+        AppPrimaryButton(
+          label: 'Get in Touch',
+          icon: Icons.north_east,
+          onTap: () => launchUrl(Uri.parse(Profile.phoneLink)),
+        ),
+      ],
+    );
+  }
+}
+
+class _QuoteCard extends StatelessWidget {
+  const _QuoteCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(Icons.format_quote, color: AppColors.primary, size: 28),
+          const SizedBox(height: 10),
+          Text(
+            'A Flutter developer with 5+ years of experience shipping production apps for Android, iOS, web, and desktop — from ERP platforms to real-time delivery systems.',
+            style: AppStyles.bodyText.copyWith(fontSize: 14, color: AppColors.textPrimary),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              const CircleAvatar(
+                radius: 16,
+                backgroundImage: AssetImage('assets/images/profile.jpg'),
+              ),
+              const SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(Profile.name, style: AppStyles.bodyText.copyWith(color: AppColors.white, fontWeight: FontWeight.w700, fontSize: 13)),
+                  Text('Senior Flutter Developer', style: AppStyles.bodyText.copyWith(fontSize: 12)),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _FollowBlock extends StatelessWidget {
+  const _FollowBlock();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SectionEyebrow('Follow Me'),
+        const SizedBox(height: 14),
+        Row(
+          children: [
+            _Social(FontAwesomeIcons.github, Profile.github),
+            _Social(FontAwesomeIcons.linkedinIn, Profile.linkedin),
+            _Social(FontAwesomeIcons.whatsapp, Profile.phoneLink),
+            _Social(FontAwesomeIcons.envelope, 'mailto:${Profile.email}'),
+          ],
+        ),
+        const SizedBox(height: 16),
+        _InfoRow(Icons.email_outlined, Profile.email, 'mailto:${Profile.email}'),
+        const SizedBox(height: 8),
+        _InfoRow(Icons.phone_outlined, Profile.phone, Profile.phoneLink),
+        const SizedBox(height: 8),
+        _InfoRow(Icons.location_on_outlined, Profile.location, null),
+      ],
+    );
+  }
+}
+
+class _Social extends StatelessWidget {
+  final FaIconData icon;
+  final String url;
+  const _Social(this.icon, this.url);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: InkWell(
+        onTap: () => launchUrl(Uri.parse(url)),
+        child: Container(
+          width: 36,
+          height: 36,
+          decoration: BoxDecoration(
+            color: AppColors.surfaceAlt,
+            shape: BoxShape.circle,
+            border: Border.all(color: AppColors.border),
+          ),
+          child: FaIcon(icon, size: 14, color: AppColors.textPrimary),
         ),
       ),
     );
   }
 }
 
-class _FooterIcon extends StatelessWidget {
+class _InfoRow extends StatelessWidget {
   final IconData icon;
-  final String url;
-
-  const _FooterIcon({required this.icon, required this.url});
+  final String text;
+  final String? url;
+  const _InfoRow(this.icon, this.text, this.url);
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: FaIcon(icon, color: AppColors.textSecondary, size: 22),
-      onPressed: () => launchUrl(Uri.parse(url)),
-      hoverColor: AppColors.linkColor.withOpacity(0.1),
-      splashRadius: 25,
+    return InkWell(
+      onTap: url == null ? null : () => launchUrl(Uri.parse(url!)),
+      child: Row(
+        children: [
+          Icon(icon, size: 14, color: AppColors.primarySoft),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Text(text, style: AppStyles.bodyText.copyWith(fontSize: 13, color: AppColors.textPrimary)),
+          ),
+        ],
+      ),
     );
   }
 }

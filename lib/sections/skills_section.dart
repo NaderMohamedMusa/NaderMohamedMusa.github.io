@@ -1,115 +1,64 @@
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 import '../constants/styles.dart';
-import '../models/skill.dart';
 import '../utils/responsive.dart';
+import '../widgets/section_shell.dart';
 
 class SkillsSection extends StatelessWidget {
   SkillsSection({super.key});
 
-  final List<SkillCategory> skillCategories = [
-    SkillCategory(
-      title: "Mobile Development",
-      icon: Icons.phone_android,
-      skills: [
-        Skill(name: "Flutter", percentage: 0.95),
-        Skill(name: "Dart", percentage: 0.95),
-        Skill(name: "Bloc & Cubit", percentage: 0.95),
-        Skill(name: "Riverpod", percentage: 0.90),
-        Skill(name: "GetX & Provider", percentage: 0.90),
-        Skill(name: "Responsive UI", percentage: 0.95),
-        Skill(name: "Animations", percentage: 0.90),
-        Skill(name: "Flutter Web", percentage: 0.85),
-        Skill(name: "Testing", percentage: 0.80),
-      ],
-    ),
-    SkillCategory(
-      title: "Architecture & Patterns",
-      icon: Icons.layers,
-      skills: [
-        Skill(name: "Clean Architecture", percentage: 0.95),
-        Skill(name: "MVVM", percentage: 0.90),
-        Skill(name: "MVC", percentage: 0.90),
-        Skill(name: "SOLID Principles", percentage: 0.90),
-        Skill(name: "Design Patterns", percentage: 0.85),
-        Skill(name: "Modular Architecture", percentage: 0.85),
-        Skill(name: "GetIt (DI)", percentage: 0.90),
-      ],
-    ),
-    SkillCategory(
-      title: "Backend & Integration",
-      icon: Icons.cloud,
-      skills: [
-        Skill(name: "RESTful APIs", percentage: 0.95),
-        Skill(name: "Firebase", percentage: 0.90),
-        Skill(name: "Supabase", percentage: 0.85),
-        Skill(name: "Google Maps", percentage: 0.90),
-        Skill(name: "Payment Gateways", percentage: 0.85),
-        Skill(name: "WebSockets (Pusher)", percentage: 0.85),
-        Skill(name: "Local Storage (Hive/SQLite)", percentage: 0.90),
-      ],
-    ),
-    SkillCategory(
-      title: "DevOps & Tools",
-      icon: Icons.build,
-      skills: [
-        Skill(name: "Git & GitHub", percentage: 0.95),
-        Skill(name: "CI/CD (Codemagic)", percentage: 0.85),
-        Skill(name: "Store Deployment", percentage: 0.95),
-        Skill(name: "Melos (Monorepos)", percentage: 0.85),
-        Skill(name: "Shorebird", percentage: 0.80),
-        Skill(name: "Jira / Trello", percentage: 0.90),
-        Skill(name: "Fastlane", percentage: 0.80),
-      ],
-    ),
-    SkillCategory(
-      title: "AI Augmented Development",
-      icon: Icons.psychology,
-      skills: [
-        Skill(name: "Cursor AI", percentage: 0.95),
-        Skill(name: "GitHub Copilot", percentage: 0.90),
-        Skill(name: "ChatGPT", percentage: 0.95),
-        Skill(name: "Claude Sonnet", percentage: 0.90),
-        Skill(name: "Google DeepMind (Antigravity)", percentage: 0.99), // ;)
-      ],
-    ),
+  final List<SkillItem> featured = const [
+    SkillItem('Flutter', 0.95, Color(0xFF54C5F8)),
+    SkillItem('Dart', 0.95, Color(0xFF0175C2)),
+    SkillItem('Bloc / Cubit', 0.95, Color(0xFF7C5CFF)),
+    SkillItem('Riverpod', 0.90, Color(0xFF14B8A6)),
+    SkillItem('Firebase', 0.90, Color(0xFFFFCA28)),
+    SkillItem('REST APIs', 0.95, Color(0xFF22C55E)),
+    SkillItem('Clean Architecture', 0.95, Color(0xFF6366F1)),
+    SkillItem('Git & GitHub', 0.95, Color(0xFFF05032)),
+    SkillItem('CI/CD', 0.85, Color(0xFFA855F7)),
+  ];
+
+  final List<SkillCategory> extra = [
+    SkillCategory('Architecture', ['MVVM', 'SOLID', 'Design Patterns', 'GetIt']),
+    SkillCategory('Backend', ['Supabase', 'Pusher', 'Hive/SQLite', 'Payments']),
+    SkillCategory('AI Tools', ['Cursor', 'Copilot', 'ChatGPT', 'Claude']),
   ];
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    return Container(
-      width: double.infinity,
-      color: Colors.transparent,
-      padding: EdgeInsets.symmetric(
-        vertical: 80,
-        horizontal: Responsive.isMobile(context) ? 20 : size.width * 0.1,
-      ),
+    final columns = Responsive.isMobile(context)
+        ? 1
+        : (Responsive.isTablet(context) ? 2 : 3);
+
+    return SectionShell(
       child: Column(
         children: [
-          Text("Skills", style: AppStyles.headline1.copyWith(color: AppColors.linkColor)),
-          const SizedBox(height: 10),
-          Text("My technical expertise", style: AppStyles.bodyText.copyWith(color: Colors.grey)),
-           const SizedBox(height: 10),
-          Container(height: 4, width: 50, color: AppColors.linkColor, margin: const EdgeInsets.only(top: 10)),
-          const SizedBox(height: 60),
-          
-          Responsive.isMobile(context) 
-            ? Column(
-                children: skillCategories.map((category) => Padding(
-                  padding: const EdgeInsets.only(bottom: 30),
-                  child: _SkillCategoryCard(category: category),
-                )).toList(),
-              )
-            : Wrap(
-                spacing: 30,
-                runSpacing: 30,
-                alignment: WrapAlignment.center,
-                children: skillCategories.map((category) => SizedBox(
-                  width: (size.width * 0.8) / 2 - 40, // 2 cards per row approximately
-                  child: _SkillCategoryCard(category: category),
-                )).toList(),
-              ),
+          const SectionEyebrow('My Skills'),
+          const SizedBox(height: 12),
+          Text('Technologies I Master', style: AppStyles.headline1),
+          const SizedBox(height: 40),
+          GridView.builder(
+            itemCount: featured.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: columns,
+              mainAxisExtent: 86,
+              crossAxisSpacing: 28,
+              mainAxisSpacing: 18,
+            ),
+            itemBuilder: (context, index) => _SkillBar(item: featured[index]),
+          ),
+          const SizedBox(height: 36),
+          Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            alignment: WrapAlignment.center,
+            children: extra
+                .expand((c) => c.skills.map((s) => _Tag('${c.title}: $s')))
+                .toList(),
+          ),
         ],
       ),
     );
@@ -118,95 +67,104 @@ class SkillsSection extends StatelessWidget {
 
 class SkillCategory {
   final String title;
-  final IconData icon;
-  final List<Skill> skills;
-
-  SkillCategory({required this.title, required this.icon, required this.skills});
+  final List<String> skills;
+  SkillCategory(this.title, this.skills);
 }
 
-class _SkillCategoryCard extends StatelessWidget {
-  final SkillCategory category;
+class SkillItem {
+  final String name;
+  final double percentage;
+  final Color color;
+  const SkillItem(this.name, this.percentage, this.color);
+}
 
-  const _SkillCategoryCard({required this.category});
+class _SkillBar extends StatelessWidget {
+  final SkillItem item;
+  const _SkillBar({required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 22,
+              height: 22,
+              decoration: BoxDecoration(
+                color: item.color.withOpacity(0.16),
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Center(
+                child: Text(
+                  item.name[0],
+                  style: TextStyle(color: item.color, fontSize: 11, fontWeight: FontWeight.w800),
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                item.name,
+                style: AppStyles.bodyText.copyWith(
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+            Text(
+              '${(item.percentage * 100).toInt()}%',
+              style: AppStyles.bodyText.copyWith(fontSize: 13, color: AppColors.muted),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            return Stack(
+              children: [
+                Container(
+                  height: 6,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1E293B),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                Container(
+                  height: 6,
+                  width: constraints.maxWidth * item.percentage,
+                  decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class _Tag extends StatelessWidget {
+  final String text;
+  const _Tag(this.text);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(30),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E2029),
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.secondary.withOpacity(0.1)),
-        boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 15, offset: const Offset(0, 5)),
-        ],
+        border: Border.all(color: AppColors.border),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(category.icon, color: AppColors.linkColor, size: 24),
-              const SizedBox(width: 15),
-              Text(category.title, style: AppStyles.headline2.copyWith(color: Colors.white, fontSize: 22)),
-            ],
-          ),
-          const SizedBox(height: 15),
-          Divider(color: Colors.grey[800], thickness: 1),
-          const SizedBox(height: 20),
-          ...category.skills.map((skill) => _SkillProgressBar(skill: skill)).toList(),
-        ],
-      ),
+      child: Text(text, style: AppStyles.bodyText.copyWith(fontSize: 12, color: AppColors.textPrimary)),
     );
   }
 }
 
-class _SkillProgressBar extends StatelessWidget {
-  final Skill skill;
-
-  const _SkillProgressBar({required this.skill});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(skill.name, style: AppStyles.bodyText.copyWith(color: Colors.grey[300], fontWeight: FontWeight.w500)),
-              Text("${(skill.percentage * 100).toInt()}%", style: AppStyles.bodyText.copyWith(color: Colors.grey[500], fontSize: 14)),
-            ],
-          ),
-          const SizedBox(height: 8),
-          LayoutBuilder(
-            builder: (context, constraints) {
-              return Stack(
-                children: [
-                   Container(
-                     height: 6,
-                     width: double.infinity,
-                     decoration: BoxDecoration(
-                       color: Colors.grey[800],
-                       borderRadius: BorderRadius.circular(3),
-                     ),
-                   ),
-                   Container(
-                     height: 6,
-                     width: constraints.maxWidth * skill.percentage,
-                     decoration: BoxDecoration(
-                       color: AppColors.linkColor,
-                       borderRadius: BorderRadius.circular(3),
-                     ),
-                   ),
-                ],
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}

@@ -2,8 +2,10 @@ class Experience {
   final String company;
   final String role;
   final String duration;
-  final String type; // Remote, On Site
+  final String type;
   final String description;
+  final String? websiteUrl;
+  final List<String> technologies;
 
   const Experience({
     required this.company,
@@ -14,7 +16,4 @@ class Experience {
     this.websiteUrl,
     this.technologies = const [],
   });
-
-  final String? websiteUrl;
-  final List<String> technologies;
 }

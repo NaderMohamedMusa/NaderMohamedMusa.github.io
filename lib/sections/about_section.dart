@@ -1,124 +1,47 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
+import '../constants/profile.dart';
 import '../constants/styles.dart';
 import '../utils/responsive.dart';
+import '../widgets/section_shell.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    return Container(
-      width: double.infinity,
-      color: Colors.transparent,
-      padding: EdgeInsets.symmetric(
-        vertical: 80,
-        horizontal: Responsive.isMobile(context) ? 20 : size.width * 0.1,
-      ),
+    final stats = [
+      _StatData(Icons.calendar_month_outlined, '5+', 'Years Experience'),
+      _StatData(Icons.code, '20+', 'Projects Completed'),
+      _StatData(Icons.sentiment_satisfied_alt_outlined, '10+', 'Happy Clients'),
+      _StatData(Icons.emoji_events_outlined, '100%', 'Client Satisfaction'),
+    ];
+
+    return SectionShell(
+      color: AppColors.backgroundAlt,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FadeInDown(child: Text("About Me", style: AppStyles.headline1.copyWith(color: AppColors.linkColor))),
-          const SizedBox(height: 10),
-          FadeInDown(delay: const Duration(milliseconds: 200), child: Text("Get to know me better", style: AppStyles.bodyText.copyWith(color: Colors.grey))),
-          const SizedBox(height: 10),
-          FadeInDown(delay: const Duration(milliseconds: 400), child: Container(height: 4, width: 50, color: AppColors.linkColor, margin: const EdgeInsets.only(top: 10))),
-          const SizedBox(height: 60),
-
-          // Profile Summary Card
-          FadeInUp(
-            duration: const Duration(milliseconds: 1000),
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(30),
-              decoration: BoxDecoration(
-                color: const Color(0xFF1E2029),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppColors.secondary.withOpacity(0.1)),
-                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 15, offset: const Offset(0, 5))],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                   Row(
-                     children: [
-                       const Icon(Icons.person, color: AppColors.linkColor, size: 24),
-                       const SizedBox(width: 15),
-                       Text("Profile Summary", style: AppStyles.headline2.copyWith(color: Colors.white, fontSize: 22)),
-                     ],
-                   ),
-                   const SizedBox(height: 20),
-                   Text(
-                     "A Flutter Mobile Developer with over 5 years of experience in designing and developing systems for Android, iOS, and iPad, in addition to working on web and desktop applications. I have extensive expertise in building and optimizing integrated systems, from creating interactive user interfaces to enhancing performance and ensuring high-quality applications across different platforms and devices.",
-                     style: AppStyles.bodyText.copyWith(fontSize: 16, height: 1.6, color: Colors.grey[300]),
-                     textAlign: TextAlign.justify,
-                   ),
-                ],
-              ),
+          FadeInDown(child: const SectionEyebrow('About Me')),
+          const SizedBox(height: 24),
+          Responsive(
+            mobile: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _AboutCopy(),
+                const SizedBox(height: 28),
+                _StatsGrid(stats: stats, columns: 2),
+              ],
             ),
-          ),
-          const SizedBox(height: 40),
-
-          // What I Do Grid
-          Text("What I Do", style: AppStyles.headline2.copyWith(color: Colors.white, fontSize: 24)),
-          const SizedBox(height: 30),
-          LayoutBuilder(builder: (context, constraints) {
-             return Wrap(
-                spacing: 20,
-                runSpacing: 20,
-                alignment: WrapAlignment.center,
-                children: [
-                   _ServiceCard(icon: Icons.phone_android, title: "Cross-Platform Dev", description: "Developing apps for mobile, web, and desktop using Flutter & Dart."),
-                   _ServiceCard(icon: Icons.design_services, title: "UI/UX Design", description: "Creating dynamic, user-friendly interfaces adapting to any screen."),
-                   _ServiceCard(icon: Icons.speed, title: "Performance", description: "Optimizing data handling and ensuring smooth user experiences."),
-                   _ServiceCard(icon: Icons.api, title: "System Integration", description: "Connecting apps with APIs, Firebase, MySQL, and RESTful services."),
-                   _ServiceCard(icon: Icons.layers, title: "State Management", description: "Efficient state management using Riverpod, Bloc, GetX, and Cubit."),
-                   _ServiceCard(icon: Icons.store, title: "App Deployment", description: "Publishing on Google Play & App Store and monitoring performance."),
-                ],
-             );
-          }),
-
-           const SizedBox(height: 40),
-           
-           // Education & Languages Split
-           Responsive.isMobile(context) ? 
-             Column(children: [
-                _InfoBlock(icon: Icons.school, title: "Education", items: const [
-                  {"title": "Bachelor’s Degree in CS", "subtitle": "Fayoum University (2017-2021)"}
-                ]),
-                const SizedBox(height: 20),
-                _InfoBlock(icon: Icons.language, title: "Languages", items: const [
-                  {"title": "Arabic", "subtitle": "Mother tongue"},
-                  {"title": "English", "subtitle": "Very Good"}
-                ]),
-             ])
-           : Row(
-               crossAxisAlignment: CrossAxisAlignment.start,
-               children: [
-                 Expanded(child: _InfoBlock(icon: Icons.school, title: "Education", items: const [
-                    {"title": "Bachelor’s Degree in CS", "subtitle": "Fayoum University (2017-2021)"}
-                 ])),
-                 const SizedBox(width: 30),
-                 Expanded(child: _InfoBlock(icon: Icons.language, title: "Languages", items: const [
-                    {"title": "Arabic", "subtitle": "Mother tongue"},
-                    {"title": "English", "subtitle": "Very Good"}
-                 ])),
-               ],
-             ),
-
-          const SizedBox(height: 60),
-          
-          // Stats
-          Wrap(
-            spacing: 30,
-            runSpacing: 30,
-            alignment: WrapAlignment.center,
-            children: [
-              _StatCircle(count: "05+", label: "Years\nExperience"),
-              _StatCircle(count: "20+", label: "Projects\nCompleted"),
-              _StatCircle(count: "10+", label: "Happy\nClients"),
-            ],
+            desktop: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(flex: 5, child: _AboutCopy()),
+                const SizedBox(width: 48),
+                Expanded(flex: 6, child: _StatsGrid(stats: stats, columns: 2)),
+              ],
+            ),
           ),
         ],
       ),
@@ -126,134 +49,144 @@ class AboutSection extends StatelessWidget {
   }
 }
 
-class _ServiceCard extends StatefulWidget {
-  final IconData icon;
-  final String title;
-  final String description;
-  const _ServiceCard({required this.icon, required this.title, required this.description});
-
-  @override
-  State<_ServiceCard> createState() => _ServiceCardState();
-}
-
-class _ServiceCardState extends State<_ServiceCard> {
-  bool _isHovered = false;
+class _AboutCopy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        width: Responsive.isMobile(context) ? double.infinity : 300,
-        padding: const EdgeInsets.all(25),
-        decoration: BoxDecoration(
-          color: const Color(0xFF1E2029),
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: _isHovered ? AppColors.linkColor : AppColors.secondary.withOpacity(0.1)),
-          boxShadow: [
-             BoxShadow(
-               color: _isHovered ? AppColors.linkColor.withOpacity(0.1) : Colors.black.withOpacity(0.2),
-               blurRadius: 15,
-               offset: const Offset(0, 5)
-             )
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(Profile.aboutTitle, style: AppStyles.headline1.copyWith(fontSize: 34)),
+        const SizedBox(height: 16),
+        Text(Profile.aboutBody, style: AppStyles.bodyText),
+        const SizedBox(height: 22),
+        OutlinedButton.icon(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                backgroundColor: AppColors.surface,
+                title: Text('About Nader', style: AppStyles.headline2),
+                content: Text(
+                  'A Flutter Mobile Developer with over 5 years of experience designing and developing systems for Android, iOS, and iPad, plus web and desktop. Expertise spans interactive UIs, performance, APIs, Firebase, and store deployment.\n\nEducation: Bachelor’s Degree in CS, Fayoum University (2017–2021).\nLanguages: Arabic (native), English (very good).',
+                  style: AppStyles.bodyText,
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Close'),
+                  ),
+                ],
+              ),
+            );
+          },
+          icon: const Icon(Icons.search, size: 16, color: AppColors.textPrimary),
+          label: Text(
+            'Learn More About Me',
+            style: AppStyles.buttonText.copyWith(color: AppColors.textPrimary),
+          ),
+          style: OutlinedButton.styleFrom(
+            side: const BorderSide(color: Color(0xFF334155)),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+          ),
+        ),
+        const SizedBox(height: 28),
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: const [
+            _Chip(Icons.school_outlined, 'CS — Fayoum University'),
+            _Chip(Icons.language, 'Arabic / English'),
+            _Chip(Icons.phone_iphone, 'Mobile • Web • Desktop'),
           ],
         ),
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(color: AppColors.linkColor.withOpacity(0.1), shape: BoxShape.circle),
-              child: Icon(widget.icon, color: AppColors.linkColor, size: 30),
-            ),
-            const SizedBox(height: 15),
-            Text(widget.title, style: AppStyles.headline2.copyWith(color: Colors.white, fontSize: 18), textAlign: TextAlign.center),
-            const SizedBox(height: 10),
-            Text(widget.description, style: AppStyles.bodyText.copyWith(color: Colors.grey, fontSize: 13, height: 1.5), textAlign: TextAlign.center),
-          ],
-        ),
+      ],
+    );
+  }
+}
+
+class _Chip extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  const _Chip(this.icon, this.label);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 14, color: AppColors.primarySoft),
+          const SizedBox(width: 8),
+          Text(label, style: AppStyles.bodyText.copyWith(fontSize: 12, color: AppColors.textPrimary)),
+        ],
       ),
     );
   }
 }
 
-class _InfoBlock extends StatelessWidget {
-   final IconData icon;
-   final String title;
-   final List<Map<String, String>> items;
-   
-   const _InfoBlock({required this.icon, required this.title, required this.items});
-
-   @override
-   Widget build(BuildContext context) {
-      return Container(
-         padding: const EdgeInsets.all(30),
-         decoration: BoxDecoration(
-            color: const Color(0xFF1E2029),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: AppColors.secondary.withOpacity(0.1)),
-         ),
-         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-               Row(
-                 children: [
-                    Icon(icon, color: AppColors.linkColor, size: 24),
-                    const SizedBox(width: 10),
-                    Text(title, style: AppStyles.headline2.copyWith(color: Colors.white, fontSize: 20)),
-                 ],
-               ),
-               const SizedBox(height: 20),
-               ...items.map((item) => Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: Row(
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                     children: [
-                        const Icon(Icons.check_circle_outline, color: AppColors.linkColor, size: 16),
-                        const SizedBox(width: 10),
-                        Expanded(
-                           child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                 Text(item["title"]!, style: AppStyles.bodyText.copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
-                                 if (item["subtitle"] != null)
-                                   Text(item["subtitle"]!, style: AppStyles.bodyText.copyWith(color: Colors.grey, fontSize: 13)),
-                              ],
-                           ),
-                        )
-                     ],
-                  ),
-               )).toList()
-            ],
-         ),
-      );
-   }
+class _StatData {
+  final IconData icon;
+  final String value;
+  final String label;
+  const _StatData(this.icon, this.value, this.label);
 }
 
-class _StatCircle extends StatelessWidget {
-   final String count;
-   final String label;
-   const _StatCircle({required this.count, required this.label});
+class _StatsGrid extends StatelessWidget {
+  final List<_StatData> stats;
+  final int columns;
+  const _StatsGrid({required this.stats, required this.columns});
 
-   @override
-   Widget build(BuildContext context) {
-      return Container(
-         width: 150,
-         height: 150,
-         decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: const Color(0xFF1E2029),
-            border: Border.all(color: AppColors.linkColor.withOpacity(0.3), width: 2),
-            boxShadow: [BoxShadow(color: AppColors.linkColor.withOpacity(0.1), blurRadius: 20)],
-         ),
-         child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-               Text(count, style: AppStyles.headline1.copyWith(color: AppColors.linkColor, fontSize: 32)),
-               const SizedBox(height: 5),
-               Text(label, style: AppStyles.bodyText.copyWith(color: Colors.white, fontSize: 14), textAlign: TextAlign.center),
-            ],
-         ),
-      );
-   }
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      itemCount: stats.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: columns,
+        mainAxisSpacing: 16,
+        crossAxisSpacing: 16,
+        mainAxisExtent: 148,
+      ),
+      itemBuilder: (context, index) {
+        final stat = stats[index];
+        return FadeInUp(
+          delay: Duration(milliseconds: 80 * index),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: AppColors.surface,
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(color: AppColors.border),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    color: AppColors.primary.withOpacity(0.14),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Icon(stat.icon, color: AppColors.primarySoft, size: 18),
+                ),
+                const SizedBox(height: 12),
+                Text(stat.value, style: AppStyles.headline1.copyWith(fontSize: 26)),
+                Text(stat.label, style: AppStyles.bodyText.copyWith(fontSize: 13)),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }

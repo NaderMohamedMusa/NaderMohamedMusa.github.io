@@ -1,271 +1,155 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../constants/colors.dart';
+import '../constants/profile.dart';
 import '../constants/styles.dart';
 import '../utils/responsive.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../widgets/app_buttons.dart';
+import '../widgets/section_shell.dart';
 
 class HomeSection extends StatelessWidget {
-  const HomeSection({super.key});
+  final VoidCallback onViewWork;
+
+  const HomeSection({super.key, required this.onViewWork});
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    return Container(
-      height: size.height, // Full screen height
-      width: double.infinity,
-      color: Colors.transparent,
-      padding: EdgeInsets.symmetric(
-        horizontal: Responsive.isMobile(context) ? 20 : size.width * 0.1,
+    return SectionShell(
+      padding: EdgeInsets.fromLTRB(
+        Responsive.isMobile(context) ? 20 : 72,
+        Responsive.isMobile(context) ? 36 : 56,
+        Responsive.isMobile(context) ? 20 : 72,
+        Responsive.isMobile(context) ? 48 : 72,
       ),
       child: Responsive(
-        mobile: _mobileLayout(context),
-        desktop: _desktopLayout(context),
+        mobile: Column(
+          children: [
+            _HeroCopy(onViewWork: onViewWork, compact: true),
+            const SizedBox(height: 40),
+            const _HeroVisual(size: 280),
+          ],
+        ),
+        desktop: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(flex: 6, child: _HeroCopy(onViewWork: onViewWork)),
+            const SizedBox(width: 40),
+            const Expanded(flex: 5, child: _HeroVisual(size: 420)),
+          ],
+        ),
       ),
     );
   }
+}
 
-  Widget _desktopLayout(BuildContext context) {
-    return Row(
+class _HeroCopy extends StatelessWidget {
+  final VoidCallback onViewWork;
+  final bool compact;
+
+  const _HeroCopy({required this.onViewWork, this.compact = false});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: compact ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              FadeInDown(
-                duration: const Duration(milliseconds: 1000),
-                child: Text(
-                  "Hello, I'm",
-                  style: AppStyles.headline2.copyWith(color: AppColors.secondary),
-                ),
-              ),
-              const SizedBox(height: 10),
-              FadeInLeft(
-                duration: const Duration(milliseconds: 1000),
-                child: Text(
-                  "Nader Mohamed",
-                  style: AppStyles.headline1.copyWith(fontSize: 60),
-                ),
-              ),
-              const SizedBox(height: 10),
-              FadeInLeft(
-                duration: const Duration(milliseconds: 1200),
-                child: SizedBox(
-                   height: 40,
-                   child: AnimatedTextKit(
-                    animatedTexts: [
-                      TypewriterAnimatedText(
-                        "Senior Flutter Developer",
-                        textStyle: AppStyles.headline2.copyWith(color: Colors.grey),
-                        speed: const Duration(milliseconds: 100),
-                      ),
-                      TypewriterAnimatedText(
-                        "Mobile - Web - Desktop - iOS",
-                        textStyle: AppStyles.headline2.copyWith(color: Colors.grey),
-                        speed: const Duration(milliseconds: 100),
-                      ),
-                    ],
-                    onTap: () {
-                      print("Tap Event");
-                    },
-                    repeatForever: true,
-                    pause: const Duration(milliseconds: 2000),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
-              FadeInUp(
-                duration: const Duration(milliseconds: 1400),
-                child: Row(
-                  children: [
-                    _SocialIcon(icon: FontAwesomeIcons.github, url: "https://github.com/NaderMohamedMusa"),
-                    const SizedBox(width: 20),
-                    _SocialIcon(icon: FontAwesomeIcons.linkedin, url: "https://www.linkedin.com/in/nader-mohamed-musa-560133186/"),
-                    const SizedBox(width: 20),
-                    _SocialIcon(icon: FontAwesomeIcons.whatsapp, url: "https://wa.me/201026133553"),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 40),
-              FadeInUp(
-                duration: const Duration(milliseconds: 1600),
-                child: Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () async {
-                         final Uri whatsappUri = Uri.parse("https://wa.me/201026133553");
-                         if (!await launchUrl(whatsappUri)) {
-                           // handle error
-                         }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.secondary,
-                        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                      ),
-                      child: Text("Contact Me", style: AppStyles.buttonText.copyWith(color: Colors.black, fontSize: 16)),
-                    ),
-                    const SizedBox(width: 20),
-                    InkWell(
-                      onTap: () async {
-                         final Uri resumeUri = Uri.parse("https://drive.google.com/file/d/1rgKNaUMRgjmhAdj7_e7un5CHXKFMT-Ys/view");
-                         if (!await launchUrl(resumeUri)) {
-                           // handle error
-                         }
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 12),
-                        decoration: BoxDecoration(
-                          color: AppColors.secondary,
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const FaIcon(FontAwesomeIcons.download, color: Colors.black, size: 20),
-                            const SizedBox(width: 8),
-                            Text("Download Resume", style: AppStyles.buttonText.copyWith(color: Colors.black, fontSize: 16)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+        FadeInDown(
+          child: Text(
+            Profile.role,
+            style: AppStyles.sectionEyebrow,
+            textAlign: compact ? TextAlign.center : TextAlign.start,
           ),
         ),
-        Expanded(
-          child: FadeInRight(
-            duration: const Duration(milliseconds: 1500),
-             // Placeholder for profile image
-            child: CircleAvatar(
-              radius: 200,
-              backgroundColor: AppColors.surface,
-              backgroundImage: AssetImage("assets/images/profile.jpg"),
+        const SizedBox(height: 18),
+        FadeInLeft(
+          child: RichText(
+            textAlign: compact ? TextAlign.center : TextAlign.start,
+            text: TextSpan(
+              style: AppStyles.display.copyWith(fontSize: compact ? 36 : 56),
+              children: [
+                const TextSpan(text: "Hi, I'm "),
+                TextSpan(
+                  text: Profile.firstName,
+                  style: const TextStyle(color: AppColors.primarySoft),
+                ),
+              ],
             ),
           ),
         ),
-      ],
-    );
-  }
-
-  Widget _mobileLayout(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        FadeInDown(
-          duration: const Duration(milliseconds: 1000),
-          child: CircleAvatar(
-            radius: 100,
-            backgroundColor: AppColors.surface,
-            backgroundImage: AssetImage("assets/images/profile.jpg"),
-          ),
-        ),
-        const SizedBox(height: 40),
-        FadeInDown(
-           duration: const Duration(milliseconds: 1000),
-           child: Text(
-            "Hello, I'm",
-            style: AppStyles.headline2.copyWith(color: AppColors.secondary, fontSize: 18),
-          ),
-        ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 8),
         FadeInLeft(
-          duration: const Duration(milliseconds: 1000),
+          delay: const Duration(milliseconds: 120),
           child: Text(
-            "Nader Mohamed",
-            style: AppStyles.headline1.copyWith(fontSize: 32),
-            textAlign: TextAlign.center,
+            Profile.headline,
+            style: AppStyles.headline1.copyWith(
+              fontSize: compact ? 26 : 40,
+              fontWeight: FontWeight.w700,
+            ),
+            textAlign: compact ? TextAlign.center : TextAlign.start,
           ),
         ),
-        const SizedBox(height: 10),
-        FadeInRight(
-          duration: const Duration(milliseconds: 1200),
-          child: SizedBox(
-             height: 30, // Smaller height for mobile
-             child: AnimatedTextKit(
-              animatedTexts: [
-                TypewriterAnimatedText(
-                  "Senior Flutter Developer",
-                  textStyle: AppStyles.headline2.copyWith(color: Colors.grey, fontSize: 18),
-                  speed: const Duration(milliseconds: 100),
-                  textAlign: TextAlign.center,
-                ),
-                TypewriterAnimatedText(
-                  "Mobile - Web - Desktop - iOS",
-                  textStyle: AppStyles.headline2.copyWith(color: Colors.grey, fontSize: 18),
-                  speed: const Duration(milliseconds: 100),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-              repeatForever: true,
-              pause: const Duration(milliseconds: 2000),
-             ),
+        const SizedBox(height: 18),
+        FadeIn(
+          delay: const Duration(milliseconds: 200),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 520),
+            child: Text(
+              Profile.summary,
+              style: AppStyles.bodyText,
+              textAlign: compact ? TextAlign.center : TextAlign.start,
+            ),
           ),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 28),
         FadeInUp(
-          duration: const Duration(milliseconds: 1400),
-          child: Column(
+          child: Wrap(
+            spacing: 14,
+            runSpacing: 12,
+            alignment: compact ? WrapAlignment.center : WrapAlignment.start,
             children: [
-              ElevatedButton(
-                onPressed: () async {
-                   final Uri whatsappUri = Uri.parse("https://wa.me/201026133553");
-                   if (!await launchUrl(whatsappUri)) {
-                     // handle error
-                   }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.secondary,
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                ),
-                child: Text("Contact Me", style: AppStyles.buttonText.copyWith(color: Colors.black, fontSize: 16)),
+              AppPrimaryButton(
+                label: 'View My Work',
+                icon: Icons.north_east,
+                onTap: onViewWork,
               ),
-              const SizedBox(height: 15),
-              InkWell(
-                onTap: () async {
-                   final Uri resumeUri = Uri.parse("https://drive.google.com/file/d/1rgKNaUMRgjmhAdj7_e7un5CHXKFMT-Ys/view");
-                   if (!await launchUrl(resumeUri)) {
-                     // handle error
-                   }
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-                  decoration: BoxDecoration(
-                    color: AppColors.secondary,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const FaIcon(FontAwesomeIcons.download, color: Colors.black, size: 20),
-                      const SizedBox(width: 8),
-                      Text("Download Resume", style: AppStyles.buttonText.copyWith(color: Colors.black, fontSize: 16)),
-                    ],
-                  ),
-                ),
+              AppOutlineButton(
+                label: 'Download CV',
+                icon: Icons.download,
+                onTap: () => launchUrl(Uri.parse(Profile.resume)),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 36),
         FadeInUp(
-          duration: const Duration(milliseconds: 1400),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          delay: const Duration(milliseconds: 150),
+          child: Column(
+            crossAxisAlignment:
+                compact ? CrossAxisAlignment.center : CrossAxisAlignment.start,
             children: [
-                _SocialIcon(icon: FontAwesomeIcons.github, url: "https://github.com/NaderMohamedMusa"),
-                const SizedBox(width: 20),
-                _SocialIcon(icon: FontAwesomeIcons.linkedin, url: "https://www.linkedin.com/in/nader-mohamed-musa-560133186/"),
-                const SizedBox(width: 20),
-                _SocialIcon(icon: FontAwesomeIcons.whatsapp, url: "https://wa.me/201026133553"),
-                 // WhatsApp icon removed from here as it is now a main button
+              Text(
+                'TECHNOLOGIES I WORK WITH',
+                style: AppStyles.sectionEyebrow.copyWith(
+                  color: AppColors.muted,
+                  letterSpacing: 1.6,
+                  fontSize: 11,
+                ),
+              ),
+              const SizedBox(height: 14),
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                alignment: compact ? WrapAlignment.center : WrapAlignment.start,
+                children: const [
+                  _TechBadge('Flutter', Color(0xFF54C5F8)),
+                  _TechBadge('Dart', Color(0xFF0175C2)),
+                  _TechBadge('Firebase', Color(0xFFFFCA28)),
+                  _TechBadge('Bloc', Color(0xFF7C5CFF)),
+                  _TechBadge('Git', Color(0xFFF05032)),
+                  _TechBadge('REST', Color(0xFF22C55E)),
+                ],
+              ),
             ],
           ),
         ),
@@ -274,23 +158,173 @@ class HomeSection extends StatelessWidget {
   }
 }
 
-class _SocialIcon extends StatelessWidget {
-  final IconData icon;
-  final String url;
-
-  const _SocialIcon({required this.icon, required this.url});
+class _TechBadge extends StatelessWidget {
+  final String label;
+  final Color color;
+  const _TechBadge(this.label, this.color);
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: FaIcon(icon, color: AppColors.textSecondary, size: 30),
-      onPressed: () async {
-        final Uri uri = Uri.parse(url);
-        if (!await launchUrl(uri)) {
-          // Handle error
-        }
-      },
-      hoverColor: AppColors.secondary.withOpacity(0.1),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 18,
+            height: 18,
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.18),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Center(
+              child: Text(
+                label[0],
+                style: TextStyle(color: color, fontSize: 11, fontWeight: FontWeight.w800),
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            label,
+            style: AppStyles.bodyText.copyWith(color: AppColors.textPrimary, fontSize: 12, fontWeight: FontWeight.w600),
+          ),
+        ],
+      ),
     );
   }
 }
+
+class _HeroVisual extends StatelessWidget {
+  final double size;
+  const _HeroVisual({required this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeInRight(
+      child: SizedBox(
+        height: size + 40,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Positioned(
+              right: 18,
+              top: 18,
+              child: Column(
+                children: List.generate(
+                  5,
+                  (r) => Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Row(
+                      children: List.generate(
+                        5,
+                        (c) => Container(
+                          width: 4,
+                          height: 4,
+                          margin: const EdgeInsets.only(left: 8),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.18),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: size * 0.78,
+              height: size * 0.78,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: AppColors.heroGlow,
+              ),
+            ),
+            ClipOval(
+              child: Image.asset(
+                'assets/images/profile.jpg',
+                width: size * 0.72,
+                height: size * 0.72,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Positioned(
+              right: 0,
+              bottom: 24,
+              child: _CodeCard(),
+            ),
+            Positioned(
+              left: 8,
+              bottom: size * 0.18,
+              child: CustomPaint(
+                size: const Size(70, 50),
+                painter: _ScribblePainter(),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CodeCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 230,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: const Color(0xE6111827),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFF334155)),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.35), blurRadius: 24, offset: const Offset(0, 12)),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.code, color: AppColors.textSecondary, size: 14),
+              const SizedBox(width: 6),
+              Text('Code', style: AppStyles.code.copyWith(color: AppColors.muted, fontSize: 11)),
+              const Spacer(),
+              const Icon(Icons.circle, size: 8, color: Color(0xFF22C55E)),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(
+            'const developer = {\n  name: "Nader",\n  skills: ["Flutter", "Dart"],\n  passion: "Building apps\n  for every platform"\n};',
+            style: AppStyles.code,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ScribblePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = AppColors.primary.withOpacity(0.7)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.6;
+    final path = Path()
+      ..moveTo(0, size.height * 0.7)
+      ..quadraticBezierTo(size.width * 0.4, 0, size.width, size.height * 0.35);
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
