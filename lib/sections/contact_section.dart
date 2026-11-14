@@ -151,10 +151,38 @@ class _FollowBlock extends StatelessWidget {
         const SizedBox(height: 14),
         Row(
           children: [
-            _Social(FontAwesomeIcons.github, Profile.github),
-            _Social(FontAwesomeIcons.linkedinIn, Profile.linkedin),
-            _Social(FontAwesomeIcons.whatsapp, Profile.phoneLink),
-            _Social(FontAwesomeIcons.envelope, 'mailto:${Profile.email}'),
+            _Social(
+              const FaIcon(
+                FontAwesomeIcons.github,
+                size: 16,
+                color: AppColors.textPrimary,
+              ),
+              Profile.github,
+            ),
+            _Social(
+              const FaIcon(
+                FontAwesomeIcons.linkedin,
+                size: 16,
+                color: AppColors.textPrimary,
+              ),
+              Profile.linkedin,
+            ),
+            _Social(
+              const FaIcon(
+                FontAwesomeIcons.whatsapp,
+                size: 16,
+                color: AppColors.textPrimary,
+              ),
+              Profile.phoneLink,
+            ),
+            _Social(
+              const Icon(
+                Icons.email_rounded,
+                size: 16,
+                color: AppColors.textPrimary,
+              ),
+              'mailto:${Profile.email}',
+            ),
           ],
         ),
         const SizedBox(height: 16),
@@ -169,7 +197,7 @@ class _FollowBlock extends StatelessWidget {
 }
 
 class _Social extends StatelessWidget {
-  final FaIconData icon;
+  final Widget icon;
   final String url;
   const _Social(this.icon, this.url);
 
@@ -188,7 +216,7 @@ class _Social extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(color: AppColors.border),
           ),
-          child: FaIcon(icon, size: 14, color: AppColors.textPrimary),
+          child: icon,
         ),
       ),
     );
