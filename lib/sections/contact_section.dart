@@ -113,7 +113,7 @@ class _QuoteCard extends StatelessWidget {
           const Icon(Icons.format_quote, color: AppColors.primary, size: 28),
           const SizedBox(height: 10),
           Text(
-            'A Flutter developer with 5+ years of experience shipping production apps for Android, iOS, web, and desktop — from ERP platforms to real-time delivery systems.',
+            'Senior Flutter Developer with 5 years of experience shipping scalable apps for mobile, web, and desktop — from enterprise ERP modernization to POS, logistics, and e-commerce.',
             style: AppStyles.bodyText.copyWith(fontSize: 14, color: AppColors.textPrimary),
           ),
           const SizedBox(height: 16),

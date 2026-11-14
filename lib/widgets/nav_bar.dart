@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../constants/colors.dart';
 import '../constants/profile.dart';
 import '../constants/styles.dart';
+import '../utils/cv_download.dart';
 import '../utils/responsive.dart';
 import 'app_buttons.dart';
 
@@ -129,7 +129,7 @@ class MobileMenu extends StatelessWidget {
               AppPrimaryButton(
                 label: 'Download CV',
                 icon: Icons.download,
-                onTap: () => launchUrl(Uri.parse(Profile.resume)),
+                onTap: CvDownload.open,
               ),
             ],
           ),

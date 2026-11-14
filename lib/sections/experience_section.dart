@@ -13,52 +13,52 @@ class ExperienceSection extends StatelessWidget {
   final List<Experience> experiences = const [
     Experience(
       company: 'Ultimate Solutions',
-      role: 'Flutter Developer',
+      role: 'Senior Flutter Developer',
       duration: 'June 2024 – Present',
       type: 'Full-time | On Site',
       description:
-          'Transforming Onyx ERP into a modern platform running on web, desktop, and mobile using Flutter, with direct integration with the Oracle database via API, support for Firebase Hosting, local data management, integration with Mason and CI/CD, and payment gateways.',
+          'Contributing to the modernization of Onyx / Solix ERP, transforming a legacy Oracle Forms system into a scalable cross-platform solution for web, desktop, and mobile. Leading and coordinating a development team of 15+ members with technical guidance, code reviews, and consistent standards. Designing reusable architectures for Sales, Inventory, Finance, HR, and POS, and improving performance through modular development.',
       websiteUrl: 'https://ultimatesolutionsportal.com/?lang=ar',
-      technologies: ['Flutter', 'Dart', 'Clean Arch', 'Bloc', 'Oracle API', 'Firebase'],
-    ),
-    Experience(
-      company: 'T Square',
-      role: 'Flutter Developer',
-      duration: 'Feb 2024 – June 2024',
-      type: 'Full-time | Remotely',
-      description:
-          'Designed and developed E-Learning and E-Commerce applications using Flutter and Firebase, integrating REST APIs, real-time databases, subscription systems, and payment gateways.',
-      technologies: ['Flutter', 'Firebase', 'REST APIs', 'Pusher', 'FCM'],
+      technologies: [
+        'Flutter',
+        'Dart',
+        'Clean Architecture',
+        'Bloc/Cubit',
+        'MVVM',
+        'REST APIs',
+        'Firebase',
+        'CI/CD',
+      ],
     ),
     Experience(
       company: 'Fekrait',
-      role: 'Flutter Developer',
+      role: 'Junior Flutter Developer',
       duration: 'June 2021 – Nov 2022',
       type: 'Full-time | Remotely',
       description:
-          'Developing the POS system for the ERP sales module, supporting printing via Sunmi, Ethernet, and Bluetooth, plus restaurant, e-invoice, and driver tracking apps.',
+          'Developed POS and sales management applications integrated with ERP systems, including inventory, invoicing, and daily operations. Implemented online/offline transaction workflows, receipt printing for Sunmi, Bluetooth, and Ethernet devices, restaurant reservation and order features, plus electronic invoice verification and delivery apps with live driver tracking.',
       websiteUrl: 'https://fekrait.com',
-      technologies: ['Flutter', 'Provider', 'Sunmi SDK', 'Google Maps'],
+      technologies: ['Flutter', 'Provider', 'MVC', 'Sunmi SDK', 'Google Maps'],
+    ),
+    Experience(
+      company: 'Pixel',
+      role: 'Junior Flutter Developer',
+      duration: 'June 2020 – Jan 2024',
+      type: 'Full-time | Remotely',
+      description:
+          'Delivered mobile applications across e-commerce, HR, tourism, booking, and service industries. Built employee management for attendance, leave, payroll, and location monitoring; customer/vendor e-commerce with carts, orders, and digital payments; and tourism reservation apps with electronic tickets and customer engagement.',
+      websiteUrl: 'http://www.pixel-eg.com',
+      technologies: ['Flutter', 'Provider', 'MVC', 'Firebase', 'Payments'],
     ),
     Experience(
       company: 'Atlantis',
       role: 'Flutter Instructor',
       duration: 'June 2021 – Nov 2022',
-      type: 'Part-time | On Site',
+      type: 'Instructor | On Site',
       description:
-          'Working as a Flutter instructor, focusing on hands-on training and helping trainees build professional projects.',
+          'Delivered practical Flutter training from fundamentals to real-world projects. Mentored trainees in architecture, problem-solving, debugging, and best practices, with hands-on exercises that prepare students for professional development roles.',
       websiteUrl: 'https://www.facebook.com/atlantis.company.eg',
-      technologies: ['Flutter', 'Dart', 'Teaching'],
-    ),
-    Experience(
-      company: 'Pixel',
-      role: 'Freelance Flutter Developer',
-      duration: 'June 2020 – Jan 2024',
-      type: 'Freelance',
-      description:
-          'Attendance systems, tourist booking, and multi-vendor e-commerce platforms for clients across Egypt.',
-      websiteUrl: 'http://www.pixel-eg.com',
-      technologies: ['Flutter', 'Provider', 'Firebase'],
+      technologies: ['Flutter', 'Dart', 'Teaching', 'Mentoring'],
     ),
   ];
 

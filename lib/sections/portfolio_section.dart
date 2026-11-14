@@ -12,21 +12,32 @@ class PortfolioSection extends StatelessWidget {
 
   final List<Project> projects = [
     Project(
-      title: 'Onyx ix ERP',
-      description: 'Full-stack ERP on web, mobile, and desktop with Stock, Sales, Purchasing, Finance, HR, and POS.',
-      technologies: ['Clean Arch', 'Bloc', 'Firebase', 'Melos'],
+      title: 'Solix ERP',
+      description:
+          'Modernizing a large-scale ERP from Oracle Forms into a unified cross-platform enterprise app for Sales, Finance, Inventory, Purchasing, HR, and POS — with advanced grids, dynamic forms, and performance work on data-heavy screens.',
+      technologies: ['Clean Architecture', 'Bloc/Cubit', 'MVVM', 'PlutoGrid', 'CI/CD'],
       imageUrl: 'assets/images/onyx_erp.png',
       webUrl: 'https://blueultimate.learnonyx.com:8022/onyx-ix.dv',
       videoUrl: 'https://drive.google.com/file/d/1LwTe5cdYSiLswZWtC7hX1UoYqsKM4y2q/view?usp=sharing',
     ),
     Project(
       title: 'Otlob Gas',
-      description: 'Fastest way to find the nearest gas cylinder distributor around you.',
-      technologies: ['GetX', 'Firebase', 'Google Maps'],
+      description:
+          'Customer and driver gas-delivery ecosystem: nearby distributor discovery, live tracking, real-time chat, voice messages, and order status sync.',
+      technologies: ['Clean Architecture', 'GetX', 'Firebase', 'Pusher', 'Google Maps'],
       imageUrl: 'assets/images/otlob_gas_customer.png',
       webUrl: 'https://www.otlobgas.com/',
       androidUrl: 'https://play.google.com/store/apps/details?id=com.otlobgas.customer',
       iosUrl: 'https://apps.apple.com/jo/app/otlob-gas-%D8%A7%D8%B7%D9%84%D8%A8-%D8%BA%D8%A7%D8%B2/id6463805314',
+    ),
+    Project(
+      title: 'Fekra POS',
+      description:
+          'POS app integrated with ERP for sales, inventory, and invoices, with Sunmi, Bluetooth, and Ethernet printing.',
+      technologies: ['Provider', 'MVC', 'Sunmi', 'REST APIs'],
+      imageUrl: 'assets/images/fekra_pos.png',
+      androidUrl: 'https://play.google.com/store/apps/details?id=com.fekra.fekrapos_vendor',
+      iosUrl: 'https://apps.apple.com/us/app/fekra-pos-vendor/id6445926663',
     ),
     Project(
       title: 'OtlobGas Driver',
@@ -59,14 +70,6 @@ class PortfolioSection extends StatelessWidget {
       androidUrl: 'https://play.google.com/store/apps/details?id=com.madzun_store.madzun_store',
     ),
     Project(
-      title: 'Fekra POS',
-      description: 'Paid POS app for sales, inventory, and invoices with hardware printing.',
-      technologies: ['Provider', 'Sunmi'],
-      imageUrl: 'assets/images/fekra_pos.png',
-      androidUrl: 'https://play.google.com/store/apps/details?id=com.fekra.fekrapos_vendor',
-      iosUrl: 'https://apps.apple.com/us/app/fekra-pos-vendor/id6445926663',
-    ),
-    Project(
       title: 'Skylayers POS',
       description: 'POS for sales, inventory, and invoices with local MySQL and printing.',
       technologies: ['MVVM', 'MySQL'],
@@ -75,23 +78,26 @@ class PortfolioSection extends StatelessWidget {
     ),
     Project(
       title: 'Check QR Saudi Invoice',
-      description: 'Saudi e-invoice QR code scanner for verification.',
-      technologies: ['QR Scanner'],
+      description:
+          'Electronic invoice verification for Saudi Arabia: scan QR codes, extract invoice data, and store results locally.',
+      technologies: ['Provider', 'MVC', 'QR Scanner', 'Local Storage'],
       imageUrl: 'assets/images/check_qr_saudi.png',
       androidUrl: 'https://play.google.com/store/apps/details?id=com.fekra.check_qr_invoice',
     ),
     Project(
       title: 'Al Reef Al Araby',
-      description: 'Ticket booking, offers, electronic payment, and photo contests.',
-      technologies: ['Payments', 'MVC'],
+      description:
+          'Tourism and reservation app for offers, ticket booking, electronic payments, digital entry, and photo competitions.',
+      technologies: ['Provider', 'MVC', 'Payments', 'FCM'],
       imageUrl: 'assets/images/al_reef.png',
       androidUrl: 'https://play.google.com/store/apps/details?id=com.elreefelaraby.elreef_elaraby',
       iosUrl: 'https://apple.co/4277RAL',
     ),
     Project(
       title: 'GDDeaf',
-      description: 'E-commerce app for fashion and devices.',
-      technologies: ['Firebase', 'Payments'],
+      description:
+          'E-commerce app for fashion and devices with product browsing, cart, payments, auth, and push notifications.',
+      technologies: ['Provider', 'MVC', 'Payments', 'FCM'],
       imageUrl: 'assets/images/gddeaf.png',
       androidUrl: 'https://play.google.com/store/apps/details?id=com.pixel.gddeaf',
       iosUrl: 'https://apps.apple.com/eg/app/gddeaf/id1663969591',

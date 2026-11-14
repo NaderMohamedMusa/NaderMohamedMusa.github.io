@@ -1,10 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../constants/colors.dart';
 import '../constants/profile.dart';
 import '../constants/styles.dart';
 import '../utils/responsive.dart';
+import '../utils/cv_download.dart';
 import '../widgets/app_buttons.dart';
 import '../widgets/section_shell.dart';
 
@@ -116,7 +116,7 @@ class _HeroCopy extends StatelessWidget {
               AppOutlineButton(
                 label: 'Download CV',
                 icon: Icons.download,
-                onTap: () => launchUrl(Uri.parse(Profile.resume)),
+                onTap: CvDownload.open,
               ),
             ],
           ),
@@ -302,7 +302,7 @@ class _CodeCard extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            'const developer = {\n  name: "Nader",\n  skills: ["Flutter", "Dart"],\n  passion: "Building apps\n  for every platform"\n};',
+            'const developer = {\n  name: "Nader",\n  role: "Senior Flutter",\n  skills: ["Flutter", "Dart"],\n  passion: "Building apps\n  for every platform"\n};',
             style: AppStyles.code,
           ),
         ],

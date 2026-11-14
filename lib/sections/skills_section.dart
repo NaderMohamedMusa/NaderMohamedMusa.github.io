@@ -9,20 +9,45 @@ class SkillsSection extends StatelessWidget {
 
   final List<SkillItem> featured = const [
     SkillItem('Flutter', 0.95, Color(0xFF54C5F8)),
-    SkillItem('Dart', 0.95, Color(0xFF0175C2)),
-    SkillItem('Bloc / Cubit', 0.95, Color(0xFF7C5CFF)),
-    SkillItem('Riverpod', 0.90, Color(0xFF14B8A6)),
-    SkillItem('Firebase', 0.90, Color(0xFFFFCA28)),
-    SkillItem('REST APIs', 0.95, Color(0xFF22C55E)),
+    SkillItem('Dart & OOP', 0.95, Color(0xFF0175C2)),
+    SkillItem('BLoC / GetX / Provider', 0.95, Color(0xFF7C5CFF)),
     SkillItem('Clean Architecture', 0.95, Color(0xFF6366F1)),
-    SkillItem('Git & GitHub', 0.95, Color(0xFFF05032)),
-    SkillItem('CI/CD', 0.85, Color(0xFFA855F7)),
+    SkillItem('Firebase', 0.95, Color(0xFFFFCA28)),
+    SkillItem('REST APIs', 0.95, Color(0xFF22C55E)),
+    SkillItem('MVVM & MVC', 0.90, Color(0xFF14B8A6)),
+    SkillItem('GitHub / GitLab', 0.95, Color(0xFFF05032)),
+    SkillItem('CI/CD & Codemagic', 0.85, Color(0xFFA855F7)),
   ];
 
   final List<SkillCategory> extra = [
-    SkillCategory('Architecture', ['MVVM', 'SOLID', 'Design Patterns', 'GetIt']),
-    SkillCategory('Backend', ['Supabase', 'Pusher', 'Hive/SQLite', 'Payments']),
-    SkillCategory('AI Tools', ['Cursor', 'Copilot', 'ChatGPT', 'Claude']),
+    SkillCategory('Flutter', [
+      'Flutter Web',
+      'Responsive UI',
+      'Custom Widgets',
+      'Melos (monorepos)',
+      'Flavors',
+      'Shorebird',
+      'Store Deployment',
+      'Testing',
+    ]),
+    SkillCategory('Backend & Data', [
+      'All Firebase services',
+      'All Supabase services',
+      'Hive',
+      'SQLite',
+      'Maps & Live Tracking',
+      'Background Services',
+    ]),
+    SkillCategory('Engineering', [
+      'SOLID',
+      'Design Patterns',
+      'Clean Code',
+      'Data Structures',
+      'Algorithms',
+      'Sentry',
+      'Agile',
+      'Jira / Trello / Slack',
+    ]),
   ];
 
   @override

@@ -67,7 +67,7 @@ class _AboutCopy extends StatelessWidget {
                 backgroundColor: AppColors.surface,
                 title: Text('About Nader', style: AppStyles.headline2),
                 content: Text(
-                  'A Flutter Mobile Developer with over 5 years of experience designing and developing systems for Android, iOS, and iPad, plus web and desktop. Expertise spans interactive UIs, performance, APIs, Firebase, and store deployment.\n\nEducation: Bachelor’s Degree in CS, Fayoum University (2017–2021).\nLanguages: Arabic (native), English (very good).',
+                  Profile.aboutDetails,
                   style: AppStyles.bodyText,
                 ),
                 actions: [
@@ -95,9 +95,9 @@ class _AboutCopy extends StatelessWidget {
           spacing: 12,
           runSpacing: 12,
           children: const [
-            _Chip(Icons.school_outlined, 'CS — Fayoum University'),
+            _Chip(Icons.school_outlined, 'B.Sc. CS — Fayoum University'),
             _Chip(Icons.language, 'Arabic / English'),
-            _Chip(Icons.phone_iphone, 'Mobile • Web • Desktop'),
+            _Chip(Icons.groups_outlined, 'Led a team of 15+'),
           ],
         ),
       ],
