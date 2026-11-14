@@ -4,6 +4,8 @@ class Project {
   final String title;
   final String description;
   final String imageUrl;
+  final String? logoImage;
+  final List<String> galleryImages;
   final String? githubUrl;
   final String? liveUrl;
   final String? androidUrl;
@@ -17,6 +19,8 @@ class Project {
     required this.title,
     required this.description,
     required this.imageUrl,
+    this.logoImage,
+    this.galleryImages = const [],
     this.githubUrl,
     this.liveUrl,
     this.androidUrl,

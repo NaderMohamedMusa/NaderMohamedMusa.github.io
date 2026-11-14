@@ -67,7 +67,7 @@ class _AboutCopy extends StatelessWidget {
                 backgroundColor: AppColors.surface,
                 title: Text('About Nader', style: AppStyles.headline2),
                 content: Text(
-                  'A Senior Flutter Developer with 5 years of experience building scalable applications for mobile, web, and desktop. Focus areas include enterprise ERP modernization, application architecture, performance, and business solutions for e-commerce, POS, logistics, and education.\n\nEducation: Bachelor’s Degree in Computer Science, Fayoum University (2017–2021).\nLanguages: Arabic (native), English (very good).',
+                  '${Profile.aboutBody}\n\nEducation: Bachelor’s Degree in Computer Science, Fayoum University (2017–2021).\nLanguages: Arabic (native), English (very good).',
                   style: AppStyles.bodyText,
                 ),
                 actions: [

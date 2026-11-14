@@ -7,7 +7,7 @@ class Profile {
       'Senior Flutter Developer with 5 years of experience building and optimizing scalable mobile, web, and desktop applications. I modernize enterprise ERP systems and deliver solutions for e-commerce, POS, logistics, and education.';
   static const aboutTitle = 'I build scalable apps and enterprise solutions';
   static const aboutBody =
-      'With 5 years of Flutter experience, I build maintainable business applications across mobile, web, and desktop. My work spans enterprise ERP, e-commerce, POS, logistics, and education, with a focus on performance and reliable architecture.';
+      'Senior Flutter Developer with 5 years of experience designing, developing, and optimizing scalable applications across mobile, web, and desktop platforms. Extensive experience in modernizing enterprise ERP systems, building complex business solutions, and delivering applications across e-commerce, POS, logistics, and education. Strong background in solving complex technical challenges, improving system performance, and developing maintainable, reliable solutions that meet business needs.';
   static const email = 'Mo.nader298@gmail.com';
   static const phone = '+20 102 613 3553';
   static const phoneLink = 'https://wa.me/201026133553';
