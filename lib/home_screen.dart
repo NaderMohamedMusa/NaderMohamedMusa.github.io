@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
   final List<GlobalKey> _keys = List.generate(6, (index) => GlobalKey());
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  int _selectedIndex = 0;
+  final ValueNotifier<int> _selectedIndex = ValueNotifier<int>(0);
 
   @override
   void initState() {
@@ -37,8 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
       final offset = box.localToGlobal(Offset.zero).dy;
       if (offset <= 140) next = i;
     }
-    if (next != _selectedIndex) {
-      setState(() => _selectedIndex = next);
+    if (next != _selectedIndex.value) {
+      _selectedIndex.value = next;
     }
   }
 
@@ -57,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void dispose() {
     _scrollController.dispose();
+    _selectedIndex.dispose();
     super.dispose();
   }
 
@@ -65,16 +66,22 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: AppColors.background,
-      endDrawer: MobileMenu(
-        onScrollToSection: _scrollToSection,
-        selectedIndex: _selectedIndex,
+      endDrawer: ValueListenableBuilder<int>(
+        valueListenable: _selectedIndex,
+        builder: (context, selectedIndex, child) => MobileMenu(
+          onScrollToSection: _scrollToSection,
+          selectedIndex: selectedIndex,
+        ),
       ),
       body: Column(
         children: [
-          NavBar(
-            selectedIndex: _selectedIndex,
-            onMenuTap: () => _scaffoldKey.currentState?.openEndDrawer(),
-            onScrollToSection: _scrollToSection,
+          ValueListenableBuilder<int>(
+            valueListenable: _selectedIndex,
+            builder: (context, selectedIndex, child) => NavBar(
+              selectedIndex: selectedIndex,
+              onMenuTap: () => _scaffoldKey.currentState?.openEndDrawer(),
+              onScrollToSection: _scrollToSection,
+            ),
           ),
           Expanded(
             child: SingleChildScrollView(
