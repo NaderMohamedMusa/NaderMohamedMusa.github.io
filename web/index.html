@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Nader Musa — Senior Flutter Developer">
+  <meta name="theme-color" content="#070b16">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Nader Musa">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+  <title>Nader Musa | Portfolio</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      background: #070b16;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #070b16;
+    }
+
+    #splash {
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 78% 15%, rgba(59, 130, 246, .12), transparent 34%),
+        radial-gradient(ellipse at 18% 88%, rgba(124, 92, 255, .14), transparent 38%),
+        linear-gradient(135deg, #080e1b, #070b16 58%, #0b1020);
+      opacity: 1;
+      transition: opacity 420ms ease, visibility 420ms ease;
+    }
+
+    #splash.is-hidden {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .splash-content {
+      display: flex;
+      width: min(90vw, 440px);
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: rise-in 700ms cubic-bezier(.2, .8, .2, 1) both;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 104px;
+      height: 104px;
+      place-items: center;
+      border: 1px solid rgba(84, 197, 248, .3);
+      border-radius: 30px;
+      background: linear-gradient(135deg, #182942, #111827);
+      box-shadow: 0 0 54px rgba(124, 92, 255, .24);
+      color: #72bfff;
+      font: 700 31px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: -5px;
+      padding-right: 5px;
+    }
+
+    .name {
+      margin: 31px 0 0;
+      color: #f8fafc;
+      font-size: clamp(21px, 5vw, 25px);
+      font-weight: 800;
+      letter-spacing: .24em;
+      text-indent: .24em;
+    }
+
+    .role {
+      margin: 11px 0 0;
+      color: #9b82ff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .19em;
+    }
+
+    .tagline {
+      margin: 17px 0 0;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .progress-track {
+      width: 184px;
+      height: 3px;
+      margin-top: 50px;
+      overflow: hidden;
+      border-radius: 9px;
+      background: #1e293b;
+    }
+
+    .progress-bar {
+      width: 42%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #54c5f8, #9b67ff);
+      animation: loading 1.4s ease-in-out infinite;
+    }
+
+    .edition {
+      position: absolute;
+      right: 20px;
+      bottom: 26px;
+      left: 20px;
+      color: #64748b;
+      font: 10px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .16em;
+      text-align: center;
+    }
+
+    @keyframes rise-in {
+      from { opacity: 0; transform: translateY(12px) scale(.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes loading {
+      from { transform: translateX(-115%); }
+      to { transform: translateX(250%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+  <script>
+    function removeSplashFromWeb() {
+      const splash = document.getElementById('splash');
+      if (!splash || splash.classList.contains('is-hidden')) return;
+      splash.classList.add('is-hidden');
+      window.setTimeout(() => splash.remove(), 450);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const observer = new MutationObserver(checkForFlutter);
+      function checkForFlutter() {
+        if (document.querySelector('flt-glass-pane, flutter-view')) {
+          requestAnimationFrame(() => requestAnimationFrame(removeSplashFromWeb));
+          observer.disconnect();
+        }
+      }
+      observer.observe(document.body, { childList: true, subtree: true });
+      checkForFlutter();
+      window.setTimeout(() => {
+        removeSplashFromWeb();
+        observer.disconnect();
+      }, 10000);
+    });
+  </script>
+</head>
+
+<body>
+  <div id="splash" role="status" aria-label="Loading Nader Musa's portfolio">
+    <main class="splash-content" id="splash-branding">
+      <div class="brand-mark" aria-hidden="true">&lt;/&gt;</div>
+      <h1 class="name">NADER MUSA</h1>
+      <p class="role">SENIOR FLUTTER DEVELOPER</p>
+      <p class="tagline">Building for every platform</p>
+      <div class="progress-track" aria-hidden="true"><div class="progress-bar"></div></div>
+    </main>
+    <div class="edition">PORTFOLIO&nbsp;&nbsp;/&nbsp;&nbsp;2026</div>
+  </div>
+
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+
+</html>
